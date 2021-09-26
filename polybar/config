@@ -1,0 +1,248 @@
+[settings]
+;format-background = #cc2e3440
+;radius = 16
+
+[colors]
+;background = ${xrdb:color0:#222}
+background = #cc2e3440
+;background = #000f0f0f
+background-alt = #3B4252
+;foreground = ${xrdb:color7:#222}
+foreground = #ffffff
+foreground-alt = #ffffff
+primary = #ffb52a
+secondary = #e60053
+alert = #bd2c40
+;enable-ipc = true
+
+[bar/normal]
+modules-right = pulsetext pulseaudio date-text date
+modules-left = i3text i3
+;modules-center = pulsetext pulseaudio
+modules-center = firefox power terminal
+background = ${colors.background}
+foreground = ${colors.foreground}
+offset-x = -3%
+offset-z = 3%
+font-0 = "Hack Nerd Font"
+;radius = 10
+enable-ipc = true
+
+[module/terminal]
+type = custom/text
+content = "  "
+click-left = xfce4-terminal
+
+
+
+[module/power]
+type = custom/text
+content = "  "
+content-foreground = #ff0000
+click-left = /home/pi/polyshutdown
+
+[module/firefox]
+type = custom/text
+content = "   "
+click-left = firefox
+
+[module/menu-text]
+type = custom/text
+content = Meny
+click-left = #menu-apps.open.1
+
+[module/date-text]
+type = custom/text
+content = "   Datum: "
+
+[module/menu-apps]
+type = custom/menu
+
+; If true, <label-toggle> will be to the left of the menu items (default).
+; If false, it will be on the right of all the items.
+expand-right = true
+
+; "menu-LEVEL-N" has the same properties as "label-NAME" with
+; the additional "exec" property
+;
+; Commands will be executed using "/bin/sh -c $COMMAND"
+
+menu-0-0 = Open
+menu-0-0-exec = #menu-apps.open.1
+;menu-0-1 = Multimedia
+;menu-0-1-exec = #menu-apps.open.2
+
+menu-1-0 = Firefox
+menu-1-0-exec = firefox
+menu-1-1 = Terminal
+menu-1-1-exec = xfce4-terminal
+menu-1-2 = Skärmdump
+menu-1-2-exec = gnome-screenshot
+
+;menu-2-0 = Gimp
+;menu-2-0-exec = gimp
+;menu-2-1 = Scrot
+;menu-2-1-exec = scrot
+
+
+[module/i3text]
+type = custom/text
+content = i3:
+scroll-up = i3-msg workspace next_on_output
+scroll-down = i3-msg workspace prev_on_output
+radius = 10
+
+[module/clock]
+type = internal/date
+interval = 1
+time = %H:%M
+
+
+[module/pulsetext]
+type = custom/text
+content = Volym:
+; scroll-up = 
+format-background = #2e3440
+
+[module/fs-text1]
+type = custom/text
+content = "Du har "
+
+[module/fs-text2]     
+type = custom/text
+content = " utrymme kvar."
+
+[module/filesystem]
+type = internal/fs
+
+; Mountpoints to display
+mount-0 = /
+; Seconds to sleep between updates
+; Default: 30
+interval = 10
+
+; Display fixed precision values
+; Default: false
+fixed-values = true
+
+; Spacing between entries
+; Default: 2
+spacing = 4
+
+
+[module/browser]
+type = custom/script
+format-prefix = "  "
+exec = echo “Firefox”
+click-left = “firefox >/dev/null 2>&1 &”
+format-prefix-foreground = ${xrdb:color7:#A52A2A}
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+
+[module/i3]
+type = internal/i3
+
+; Only show workspaces defined on the same output as the bar
+;
+; Useful if you want to show monitor specific workspaces
+; on different bars
+;
+; Default: false
+pin-workspaces = true
+
+; This will split the workspace name on ':'
+; Default: false
+strip-wsnumbers = true
+
+; format-background = #2e3440
+
+; Sort the workspaces by index instead of the default
+; sorting that groups the workspaces by output
+; Default: false
+index-sort = true
+
+; Create click handler used to focus workspace
+; Default: true
+enable-click = false
+
+; Create scroll handlers used to cycle workspaces
+; Default: true
+enable-scroll = true
+
+; Wrap around when reaching the first/last workspace
+; Default: true
+wrapping-scroll = false
+
+; Set the scroll cycle direction 
+; Default: true
+reverse-scroll = false
+
+; Use fuzzy (partial) matching on labels when assigning 
+; icons to workspaces
+; Example: code;♚ will apply the icon to all workspaces 
+; containing 'code' in the label
+; Default: false
+fuzzy-match = true
+ws-icon-1 = 1
+ws-icon-2 = 2
+ws-icon-3 = 3
+ws-icon-4 = 4
+ws-icon-5 = 5
+ws-icon-6 = 6
+ws-icon-7 = 7
+ws-icon-8 = 8
+ws-icon-9 = 9
+
+label-focused-foreground = #00FF00
+
+
+[module/date]
+type = internal/date
+date = %Y-%m-%d%
+time = %H:%M
+[module/pulseaudio]
+type = internal/pulseaudio
+; Sink to be used, if it exists (find using `pacmd list-sinks`, name field)
+; If not, uses default sink
+sink = alsa_output.pci-0000_12_00.3.analog-stereo
+
+; Use PA_VOLUME_UI_MAX (~153%) if true, or PA_VOLUME_NORM (100%) if false
+; Default: true
+use-ui-max = true
+
+format-background = #2e3440
+
+; Interval for volume increase/decrease (in percent points)
+; Default: 5
+interval = 1
+; Available tags:
+;   <label-volume> (default)
+;   <ramp-volume>
+;   <bar-volume>
+format-volume = <ramp-volume> <label-volume>
+
+; Available tags:
+;   <label-muted> (default)
+;   <ramp-volume>
+;   <bar-volume>
+;format-muted = <label-muted>
+
+; Available tokens:
+;   %percentage% (default)
+;   %decibels%
+;label-volume = %percentage%%
+
+; Available tokens:
+;   %percentage% (default)
+;   %decibels%
+label-muted = muted
+label-muted-foreground = #666
+
+; Only applies if <ramp-volume> is used
+ramp-volume-0 = ""
+ramp-volume-1 = ""
+ramp-volume-2 = ""
+
+; Right and Middle click
+click-right = pavucontrol
+; click-middle = 

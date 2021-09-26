@@ -1,0 +1,5 @@
+#!/bin/sh
+# nitrogen --restore 
+xwallpaper --zoom ~/Pictures/monterey.jpg
+~/.config/polybar/launch > /dev/null 2>&1 &
+picom --config ~/.config/picom/picom.conf> /dev/null 2>&1 &

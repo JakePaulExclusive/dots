@@ -1,0 +1,175 @@
+# i3 config file v4
+
+# raspberry key
+set $mod Mod4
+
+# font
+font pango:Hack 8
+
+# floating stuff
+floating_modifier $mod
+
+# terminal
+bindsym --release $mod+t exec xfce4-terminal
+
+# kill focused window
+bindsym --release $mod+Shift+q kill
+
+# dmenu
+bindsym --release $mod+d exec dmenu_run -b -nb "#2e3440"
+# desktop dmenu
+bindsym --release $mod+Shift+d exec --no-startup-id i3-dmenu-desktop
+
+# numlock annoying
+exec numlockx off
+
+# gaps
+gaps inner 10
+gaps outer 10
+
+# haha colors
+client.focused          #00776C #00776C #FFFFFF #00776C   #00776C
+
+# side button stuff
+# bindsym --release --whole-window button9 move left
+# bindsym --release --whole-window button8 move right
+
+# polybar
+bindsym --release $mod+p exec /home/pi/.config/polybar/launch2
+
+# shutdown
+bindsym --release $mod+F10 exec /home/pi/polyshutdown
+
+# alternate workspace stuff
+# bindsym --release $mod+button4 exec i3-msg workspace prev_on_output
+# bindsym --release $mod+button5 exec i3-msg workspace next_on_output
+bindsym --release $mod+Left workspace prev_on_output
+bindsym --release $mod+Right workspace next_on_output
+
+# change focus
+# bindsym --release $mod+j focus left
+# bindsym --release $mod+k focus down
+# bindsym --release $mod+l focus up
+# bindsym --release $mod+odiaeresis focus right
+#
+# bindsym --release $mod+Left focus left
+# bindsym --release $mod+Down focus down
+# bindsym --release $mod+Up focus up
+# bindsym --release $mod+Right focus right
+
+# move focused window
+bindsym --release $mod+Shift+j move left
+bindsym --release $mod+Shift+k move down
+bindsym --release $mod+Shift+l move up
+bindsym --release $mod+Shift+odiaeresis move right
+
+bindsym --release $mod+Shift+Left move left
+bindsym --release $mod+Shift+Down move down
+bindsym --release $mod+Shift+Up move up
+bindsym --release $mod+Shift+Right move right
+
+# horizontal
+bindsym --release $mod+h split h
+
+# vertical
+bindsym --release $mod+v split v
+
+# fullscreen
+bindsym --release $mod+f fullscreen toggle
+
+# container layout
+bindsym --release $mod+s layout stacking
+bindsym --release $mod+w layout tabbed
+bindsym --release $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym --release $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym --release $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym --release $mod+a focus parent
+
+# take screenshot
+bindsym --release Print exec gnome-screenshot -i
+
+# focus the child container
+#bindsym --release $mod+d focus child
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# switch to workspace
+bindsym --release $mod+1 workspace $ws1
+bindsym --release $mod+2 workspace $ws2
+bindsym --release $mod+3 workspace $ws3
+bindsym --release $mod+4 workspace $ws4
+bindsym --release $mod+5 workspace $ws5
+bindsym --release $mod+6 workspace $ws6
+bindsym --release $mod+7 workspace $ws7
+bindsym --release $mod+8 workspace $ws8
+bindsym --release $mod+9 workspace $ws9
+bindsym --release $mod+0 workspace $ws10
+
+# move focused container to workspace
+bindsym --release $mod+Shift+1 move container to workspace $ws1
+bindsym --release $mod+Shift+2 move container to workspace $ws2
+bindsym --release $mod+Shift+3 move container to workspace $ws3
+bindsym --release $mod+Shift+4 move container to workspace $ws4
+bindsym --release $mod+Shift+5 move container to workspace $ws5
+bindsym --release $mod+Shift+6 move container to workspace $ws6
+bindsym --release $mod+Shift+7 move container to workspace $ws7
+bindsym --release $mod+Shift+8 move container to workspace $ws8
+bindsym --release $mod+Shift+9 move container to workspace $ws9
+bindsym --release $mod+Shift+0 move container to workspace $ws10
+
+# reload config
+bindsym --release $mod+Shift+c reload
+# restart i3 
+bindsym --release $mod+Shift+r restart
+# exit i3
+bindsym --release $mod+Shift+e exec "i3-nagbar -t warning -m 'avsluta i3?' -B 'ja' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym --release j resize shrink width 10 px or 10 ppt
+        bindsym --release k resize grow height 10 px or 10 ppt
+        bindsym --release l resize shrink height 10 px or 10 ppt
+        bindsym --release odiaeresis resize grow width 10 px or 10 ppt
+
+        # arrow keys
+        bindsym --release Left resize shrink width 10 px or 10 ppt
+        bindsym --release Down resize grow height 10 px or 10 ppt
+        bindsym --release Up resize shrink height 10 px or 10 ppt
+        bindsym --release Right resize grow width 10 px or 10 ppt
+
+        # exit
+        bindsym --release Return mode "default"
+        bindsym --release Escape mode "default"
+        bindsym --release $mod+r mode "default"
+}
+
+bindsym --release $mod+r mode "resize"
+
+exec /home/pi/.config/i3/launch
+default_border pixel 1
+default_floating_border pixel 1
+exec i3-msg restart
+exec xfce4-terminal
