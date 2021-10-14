@@ -179,8 +179,8 @@ bindsym --release $mod+r mode "resize"
 # startup script
 exec /home/pi/.config/i3/launch
 # borders
-default_border pixel 1
-default_floating_border pixel 1
+default_border pixel 0
+default_floating_border pixel 0
 # remove spinning mouse
 exec i3-msg restart
 # i like terminal

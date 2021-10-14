@@ -37,4 +37,5 @@ MiscShowUnsafePasteDialog=TRUE
 BackgroundMode=TERMINAL_BACKGROUND_TRANSPARENT
 BackgroundDarkness=0,800000
 TitleInitial=xfce4 term
+ScrollingBar=TERMINAL_SCROLLBAR_NONE
 
